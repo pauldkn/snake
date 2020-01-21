@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(/images/forest.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header:hover, footer:hover {
+    font-size: 1.3em;
+}
+
+
+header, footer {
+    /* background-image: url(/images/forest.gif); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50px;
+    letter-spacing: 5px;
+}
+
+header {
+    display: flex;
+    padding: 10px;
+    border-bottom: 3px solid black;
+    /* margin-bottom: 30px; */
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    border: 3px solid green;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+.settings {
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 2px dotted green;
+    border-radius: 5%;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+button {
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    font-size: 2em;
+    border: 2px solid green;
+    border-radius: 20%;
+    color: green;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+button:hover {
+    font-size: 3em;
+    font-weight: bold;
+    width: 125px;
+    height: 125px;
+    border: 5px solid green;
+}
+
+.difficulty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: green;
+    font-size: 1.2em;
+}
+
+select {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(255, 255, 255, 0.3);
+    color: green;
+    border: 2px solid green;
+    font-size: 1em;
+}
+
+.main {
+    height: 590px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background-image: url(/images/forest.gif); */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.board {
+    height: 400px;
+    border: 3px solid green;
+    border-radius: 5%;
+    background-color: rgb(255, 255, 255, 0.3);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: larger;
+}
+
+.board:hover {
+    /* font-weight: bold; */
+    font-size: x-large;
+    border: 5px dotted green;
+}
+
+.rules {
+    line-height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rules li {
+    list-style-type: none;
+}
+
+#points {
+    font-size: 1.5em;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border-top: 3px solid black;
+    /* margin-top: 30px; */
+    align-items: center;
+    justify-content: space-between;
+}
