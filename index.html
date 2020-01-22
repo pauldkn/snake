@@ -11,25 +11,23 @@
 </head>
 <body>
     <header>
-        <h1 class="title">Canvas | fakeSnakeInc.</h1>
+        <h1 class="title">Canvas | Snake</h1>
     </header>
 
     <section class="main">
         <div class="board">
             <div class="rules">
-                <h3>LET'S PLAY THE ICONIC SNAKE!</h3><br>
-                <img src="./images/snake2.png" alt="snake" width="50" height="50">
-                <br>
-                Do you really need rules ?<br>
+                <h3>LET'S PLAY SNAKE!</h3><br>
+                <img src="./images/snake2.png" alt="snake" width="50" height="50"><br>
                 <ul>
                     <li>up arrow: move up</li>
                     <li>down arrow: move down</li>
                     <li>left arrow: move left</li>
-                    <li>right arrow: seriously ?</li>
+                    <li>right arrow: move right</li>
                 </ul>
             </div>
             <div class="score">
-                <h3>You current score: <span id="points">0 point</span></h3>
+                <h3>Your current score:<br><span id="points">0 point</span></h3>
             </div>
         </div>
         <div class="settings">
@@ -44,14 +42,14 @@
             </div>
             <button id="btn-go">GO!</button>
         </div>
-        <div class="game">
-            <canvas id="example" width="400" height="400"></canvas>
+        <div id="game">
+            <canvas class="canvas" width="400" height="400"></canvas>
         </div>
     </section>
 
     <footer>
         <h1 class="copyright">Canvas | JS</h1>
-        <h1 class="copyright">fakeSnakeInc ©</h1>
+        <h1 class="copyright">Snake</h1>
     </footer>
 </body>
 </html>
