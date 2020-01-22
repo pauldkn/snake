@@ -44,24 +44,24 @@ function drawFood() {
   ctx.fillRect(food.x, food.y, 20, 20);
 }
 
-function moveSnake() {
+function snakeDirection() {
   document.onkeydown = function(event) {
     switch (event.keyCode) {
       case 38: // up arrow
         snake.direction = "T"; // top
-        console.log("Going up!");
+        console.log("Direction North!");
         break;
       case 40: // down arrow
         snake.direction = "B"; // bottom
-        console.log("Going bot!");
+        console.log("Direction South!");
         break;
       case 37: // left arrow
         snake.direction = "L"; // left
-        console.log("Going left!");
+        console.log("Direction West!");
         break;
       case 39: // right arrow
         snake.direction = "R"; // right
-        console.log("Going right!");
+        console.log("Direction East!");
         break;
     }
   };
@@ -137,68 +137,47 @@ function ouroboros() {
 // }
 
 
-function getDirection(){
+function moveSnake(){
     switch (snake.direction) {
         case "T":
-          // snake.y -= snake.speed;
-          if (snake.body.length === 1) {
-            snake.body[0].y -= snake.speed;
-            snake.body[0].y < 0 ? (snake.body[0].y = 380) : console.log("ooooo");
-          } else {
-            for (let i = snake.body.length - 1; i > 0; i--) {
-              snake.body[i].x = snake.body[i - 1].x;
-              snake.body[i].y = snake.body[i - 1].y;
+            for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--) {
+              snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
+              snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].y -= snake.speed;
-              snake.body[i].y < 0 ? (snake.body[i].y = 380) : console.log("ooooo");
+              snake.body[0].y < 0 ? (snake.body[0].y = 380) : console.log("GOING TOP");
             }
-          }
           break;
         case "B":
-          if (snake.body.length === 1) {
-            snake.body[0].y += snake.speed;
-            snake.body[0].y > 380 ? (snake.body[0].y = 0) : console.log("ooooo");
-          } else {
-            for (let i = snake.body.length - 1; i > 0; i--) {
-              snake.body[i].x = snake.body[i - 1].x;
-              snake.body[i].y = snake.body[i - 1].y;
+            for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--) {
+              snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
+              snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].y += snake.speed;
-              snake.body[i].y > 380 ? (snake.body[i].y = 0) : console.log("ooooo");
+              snake.body[0].y > 380 ? (snake.body[0].y = 0) : console.log("GOING BOT");
             }
-          }
           break;
         case "L":
-          if (snake.body.length === 1) {
-            snake.body[0].x -= snake.speed;
-            snake.body[0].x < 0 ? (snake.body[0].x = 380) : console.log("ooooo");
-          } else {
-            for (let i = snake.body.length - 1; i > 0; i--) {
-              snake.body[i].x = snake.body[i - 1].x;
-              snake.body[i].y = snake.body[i - 1].y;
+            for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--) {
+              snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
+              snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].x -= snake.speed;
-              snake.body[i].x < 0 ? (snake.body[i].x = 380) : console.log("ooooo");
+              snake.body[0].x < 0 ? (snake.body[0].x = 380) : console.log("GOING LEFT");
             }
-          }
           break;
         case "R":
-          if (snake.body.length === 1) {
-            snake.body[0].x += snake.speed;
-            snake.body[0].x > 380 ? (snake.body[0].x = 0) : console.log("ooooo");
-          } else {
-              for (let i = snake.body.length - 1; i > 0; i--) {
-                snake.body[i].x = snake.body[i - 1].x;
-                snake.body[i].y = snake.body[i - 1].y;
+            for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--) {
+                snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
+                snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
                 snake.body[0].x += snake.speed;
-                snake.body[i].x > 380 ? (snake.body[i].x = 0) : console.log("ooooo");
+                snake.body[0].x > 380 ? (snake.body[0].x = 0) : console.log("GOING RIGHT");
               }
-          }
           break;
       }
 }
 
 function gameLoop() {
   moveSnake();
-  getDirection();
   clearArea();
+  snakeDirection();
   drawSnake();
   drawFood();
   eatFood();
@@ -210,55 +189,3 @@ function gameLoop() {
   // requestAnimationFrame(gameLoop);
 }
 setInterval(gameLoop, 250);
-
-
-
-
-
-
-
-// SAME WITH PB ------------------------
-// function gameLoop(){
-//     moveSnake();
-//     switch(snake.direction){
-//         case "T":
-//             // snake.y -= snake.speed;
-//             for (let i = 0; i < snake.body.length; i++){
-//                 snake.body[i].y -= snake.speed;
-//                 snake.body[i].y < 0 ? snake.body[i].y = 380 : void(0);
-//             }
-//             break;
-//         case "B":
-//             // snake.y += snake.speed;
-//             for (let i = 0; i < snake.body.length; i++){
-//                 snake.body[i].y += snake.speed;
-//                 snake.body[i].y > 380 ? snake.body[i].y = 0 : void(0);
-//             }
-//             break;
-//         case "L":
-//             // snake.x -= snake.speed;
-//             for (let i = 0; i < snake.body.length; i++){
-//                 snake.body[i].x -= snake.speed;
-//                 snake.body[i].x < 0 ? snake.body[i].x = 380 : void(0);
-//             }
-//             break;
-//         case "R":
-//             // snake.x += snake.speed;
-//             for (let i = 0; i < snake.body.length; i++){
-//                 snake.body[i].x += snake.speed;
-//                 snake.body[i].x > 380 ? snake.body[i].x = 0 : void(0);
-//             }
-//             break;
-//     };
-//     clearArea();
-//     drawSnake();
-//     drawFood();
-//     eatFood();
-//     ouroboros();
-//     stopGame();
-//     // console.log("oooooooo");
-//     // console.log(food);
-//     // console.log(snake.body[0]);
-//     // requestAnimationFrame(gameLoop);
-// };
-// // requestAnimationFrame(gameLoop);
