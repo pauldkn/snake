@@ -20,7 +20,6 @@ var snake = {
     // { x: 20, y: 100 },
   ]
 };
-
 function drawSnake() {
   // IMAGE OR DRAW SNAKE
   // ctx.drawImage(snakeImg, snake.x, snake.y, 40, 40);
@@ -38,7 +37,6 @@ var food = {
   x: Math.round(Math.random() * 19) * 20,
   y: Math.round(Math.random() * 19) * 20
 };
-
 function drawFood() {
   ctx.fillStyle = "red";
   ctx.fillRect(food.x, food.y, 20, 20);
@@ -49,19 +47,19 @@ function snakeDirection() {
     switch (event.keyCode) {
       case 38: // up arrow
         snake.direction = "T"; // top
-        console.log("Direction North!");
+        // console.log("Direction North!");
         break;
       case 40: // down arrow
         snake.direction = "B"; // bottom
-        console.log("Direction South!");
+        // console.log("Direction South!");
         break;
       case 37: // left arrow
         snake.direction = "L"; // left
-        console.log("Direction West!");
+        // console.log("Direction West!");
         break;
       case 39: // right arrow
         snake.direction = "R"; // right
-        console.log("Direction East!");
+        // console.log("Direction East!");
         break;
     }
   };
@@ -72,39 +70,13 @@ var currentScore = 0;
 
 function eatFood() {
   if (snake.body[0].x === food.x && snake.body[0].y === food.y){
+    
     currentScore += 10;
     console.log("MIAAAAM");
+
     score.innerHTML = `${currentScore} points`;
     snake.body.push({x: 0, y:0});
 
-    // for (let i = 1; i < snake.body.length; i++) {
-    //   switch (snake.direction) {
-    //     case "R":
-    //       snake.body.push({
-    //         x: snake.body[snake.body.length - 1].x - 20,
-    //         y: snake.body[snake.body.length - 1].y
-    //       });
-    //       break;
-    //     case "L":
-    //       snake.body.push({
-    //         x: snake.body[snake.body.length - 1].x + 20,
-    //         y: snake.body[snake.body.length - 1].y
-    //       });
-    //       break;
-    //     case "T":
-    //       snake.body.push({
-    //         x: snake.body[snake.body.length - 1].x,
-    //         y: snake.body[snake.body.length - 1].y + 20
-    //       });
-    //       break;
-    //     case "B":
-    //       snake.body.push({
-    //         x: snake.body[snake.body.length - 1].x,
-    //         y: snake.body[snake.body.length - 1].y - 20
-    //       });
-    //       break;
-    //   }
-    // }
     console.log(snake.body);
   }
 }
@@ -117,6 +89,7 @@ function ouroboros() {
       snake.body[0].y === snake.body[i].y
     ) {
       console.log("OUROBOROS", snake.body);
+      alert("END OF THE GAME!");
     }
   }
 }
@@ -136,7 +109,6 @@ function ouroboros() {
 //   }
 // }
 
-
 function moveSnake(){
     switch (snake.direction) {
         case "T":
@@ -144,7 +116,7 @@ function moveSnake(){
               snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
               snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].y -= snake.speed;
-              snake.body[0].y < 0 ? (snake.body[0].y = 380) : console.log("GOING TOP");
+              snake.body[0].y < 0 ? (snake.body[0].y = 380) : "";
             }
           break;
         case "B":
@@ -152,7 +124,7 @@ function moveSnake(){
               snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
               snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].y += snake.speed;
-              snake.body[0].y > 380 ? (snake.body[0].y = 0) : console.log("GOING BOT");
+              snake.body[0].y > 380 ? (snake.body[0].y = 0) : "";
             }
           break;
         case "L":
@@ -160,7 +132,7 @@ function moveSnake(){
               snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
               snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
               snake.body[0].x -= snake.speed;
-              snake.body[0].x < 0 ? (snake.body[0].x = 380) : console.log("GOING LEFT");
+              snake.body[0].x < 0 ? (snake.body[0].x = 380) : "";
             }
           break;
         case "R":
@@ -168,10 +140,16 @@ function moveSnake(){
                 snake.body.length === 1 ? "" : snake.body[i].x = snake.body[i - 1].x;
                 snake.body.length === 1 ? "" : snake.body[i].y = snake.body[i - 1].y;
                 snake.body[0].x += snake.speed;
-                snake.body[0].x > 380 ? (snake.body[0].x = 0) : console.log("GOING RIGHT");
+                snake.body[0].x > 380 ? (snake.body[0].x = 0) : "";
               }
           break;
       }
+}
+
+function logBody(){
+  for (let i = 0; i < snake.body.length; i++){
+    console.log(snake.body[i]);
+  }
 }
 
 function gameLoop() {
@@ -185,7 +163,7 @@ function gameLoop() {
   // stopGame();
   // console.log("oooooooo");
   // console.log(food);
-  // console.log(snake.body[0]);
   // requestAnimationFrame(gameLoop);
+  logBody();
 }
-setInterval(gameLoop, 250);
+setInterval(gameLoop, 2000);
