@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url(/images/forest.gif);
+    background-image: url(./images/forest.gif);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@ header:hover, footer:hover {
 
 
 header, footer {
-    /* background-image: url(/images/forest.gif); */
+    /* background-image: url(./images/forest.gif); */
     background-size: cover;
     background-repeat: no-repeat;
     height: 50px;
@@ -92,7 +92,7 @@ select {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* background-image: url(/images/forest.gif); */
+    /* background-image: url(./images/forest.gif); */
     background-size: cover;
     background-repeat: no-repeat;
 }
