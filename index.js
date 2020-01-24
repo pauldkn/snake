@@ -1,5 +1,7 @@
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
+var score = document.getElementById("points");
+var currentScore = 1;
 
 // BUTTON START ?
 // var launchBtn = document.getElementById("btn-go");
@@ -49,8 +51,13 @@ function eatFood(){
     food.isEaten = true;
     snake.body.push({});
     console.log("MIAAAAM");
+    food = {
+      x: Math.round(Math.random() * 19) * 20,
+      y: Math.round(Math.random() * 19) * 20,
+      isEaten: false,
+    };
 
-    snake.body.length < 20 ? currentScore += 10 : currentScore += 20;
+    snake.body.length < 10 ? currentScore += 1 : currentScore += 10;
 
     score.innerHTML = `${currentScore} points`;
   }
@@ -79,9 +86,6 @@ function snakeDirection() {
     }
   };
 }
-var score = document.getElementById("points");
-var currentScore = 0;
-
 
 // FUNCTION TO CHECK IF THE SNAKE EATS ITS OWN TAIL
 function ouroboros() {
@@ -92,6 +96,7 @@ function ouroboros() {
     ) {
       console.log("OUROBOROS", snake.body);
       snake.speed = 0;
+      clearInterval(gameInterval);
     }
   }
 }
@@ -103,7 +108,8 @@ function moveSnake() {
       for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--){
         snake.body.length === 1 ? "" : (snake.body[i].x = snake.body[i - 1].x);
         snake.body.length === 1 ? "" : (snake.body[i].y = snake.body[i - 1].y);
-        snake.body[0].y < 0 ? (snake.body[0].y = 380) : "";
+        snake.body[0].y <= 0 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
+        // snake.body[0].y < 0 ? (snake.body[0].y = 380) : ""; // CAN TRAVERSE THE WALLS
       }
       snake.body[0].y -= snake.speed;
       break;
@@ -111,7 +117,8 @@ function moveSnake() {
       for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--){
         snake.body.length === 1 ? "" : (snake.body[i].x = snake.body[i - 1].x);
         snake.body.length === 1 ? "" : (snake.body[i].y = snake.body[i - 1].y);
-        snake.body[0].y > 380 ? (snake.body[0].y = 0) : "";
+        snake.body[0].y >= 380 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
+        // snake.body[0].y > 380 ? (snake.body[0].y = 0) : ""; // CAN TRAVERSE THE WALLS
       }
       snake.body[0].y += snake.speed;
       break;
@@ -119,7 +126,8 @@ function moveSnake() {
       for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--){
         snake.body.length === 1 ? "" : (snake.body[i].x = snake.body[i - 1].x);
         snake.body.length === 1 ? "" : (snake.body[i].y = snake.body[i - 1].y);
-        snake.body[0].x < 0 ? (snake.body[0].x = 380) : "";
+        snake.body[0].x <= 0 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
+        // snake.body[0].x < 0 ? (snake.body[0].x = 380) : ""; // CAN TRAVERSE THE WALLS
       }
       snake.body[0].x -= snake.speed;
       break;
@@ -127,7 +135,8 @@ function moveSnake() {
       for (let i = snake.body.length === 1 ? snake.body.length : snake.body.length - 1; i > 0; i--){
         snake.body.length === 1 ? "" : (snake.body[i].x = snake.body[i - 1].x);
         snake.body.length === 1 ? "" : (snake.body[i].y = snake.body[i - 1].y);
-        snake.body[0].x > 380 ? (snake.body[0].x = 0) : "";
+        snake.body[0].x >= 380 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
+        // snake.body[0].x > 380 ? (snake.body[0].x = 0) : ""; // CAN TRAVERSE THE WALLS
       }
       snake.body[0].x += snake.speed;
       break;
@@ -136,10 +145,12 @@ function moveSnake() {
 
 // FUNCTION TO CHECK THE POSITION OF THE SNAKE
 // function logBody() {
-//   for (let i = 0; i < snake.body.length; i++) {
-//     console.log(i, snake.body[i]);
-//   }
-// }
+  //   for (let i = 0; i < snake.body.length; i++) {
+    //     console.log(i, snake.body[i]);
+    //   }
+    // }
+
+
 
 function gameLoop() {
   clearArea();
@@ -152,7 +163,30 @@ function gameLoop() {
   // requestAnimationFrame(gameLoop);
   // logBody();
 }
-setInterval(gameLoop, 100);
-// buttonEasy.onclick = setInterval(gameLoop, 300);
-// buttonMedium.onclick = setInterval(gameLoop, 100);
-// buttonPython.onclick = setInterval(gameLoop, 50);
+// setInterval(gameLoop, 50);
+
+var gameInterval;
+
+function levelDifficulty(){
+  var btnEasy = document.getElementById("btn-easy");
+  var btnMedium = document.getElementById("btn-medium");
+  var btnHard = document.getElementById("btn-hard");
+  
+  btnEasy.onclick = function easyGame(){
+    // gameLoop();
+    console.log("GO FOR EASY MODE")
+    gameInterval = setInterval(gameLoop, 250);
+  }
+  btnMedium.onclick = function startMedium(){
+    // gameLoop();
+    console.log("GO FOR MEDIUM MODE")
+    gameInterval = setInterval(gameLoop, 150);   
+  } 
+  btnHard.onclick = function startHard(){
+    // gameLoop();
+    console.log("ARE YOU REALLY A PYTHON ?")
+    gameInterval = setInterval(gameLoop, 50);
+  } 
+}
+
+levelDifficulty();
