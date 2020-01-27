@@ -1,7 +1,7 @@
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 var score = document.getElementById("points");
-var currentScore = 1;
+var currentScore = 0;
 
 // BUTTON START ?
 // var launchBtn = document.getElementById("btn-go");
@@ -57,7 +57,7 @@ function eatFood(){
       isEaten: false,
     };
 
-    snake.body.length < 10 ? currentScore += 1 : currentScore += 10;
+    snake.body.length < 10 ? currentScore += 10 : currentScore += 20;
 
     score.innerHTML = `${currentScore} points`;
   }
@@ -97,6 +97,7 @@ function ouroboros() {
       console.log("OUROBOROS", snake.body);
       snake.speed = 0;
       clearInterval(gameInterval);
+      alert(`END OF THE GAME! SCORE: ${currentScore}! Refresh the page to play again!`);
     }
   }
 }
@@ -111,6 +112,7 @@ function moveSnake() {
         snake.body[0].y <= 0 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
         // snake.body[0].y < 0 ? (snake.body[0].y = 380) : ""; // CAN TRAVERSE THE WALLS
       }
+      snake.body[0].y <= 0 ?  alert(`END OF THE GAME! SCORE: ${currentScore}! Refresh the page to play again!`) : "" ;
       snake.body[0].y -= snake.speed;
       break;
     case "B":
@@ -120,6 +122,7 @@ function moveSnake() {
         snake.body[0].y >= 380 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
         // snake.body[0].y > 380 ? (snake.body[0].y = 0) : ""; // CAN TRAVERSE THE WALLS
       }
+      snake.body[0].y >= 380 ? alert(`END OF THE GAME! SCORE: ${currentScore}! Refresh the page to play again!`) : "" ;
       snake.body[0].y += snake.speed;
       break;
     case "L":
@@ -129,6 +132,7 @@ function moveSnake() {
         snake.body[0].x <= 0 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
         // snake.body[0].x < 0 ? (snake.body[0].x = 380) : ""; // CAN TRAVERSE THE WALLS
       }
+      snake.body[0].x <= 0 ?  alert(`END OF THE GAME! SCORE: ${currentScore}! Refresh the page to play again!`) : "" ;
       snake.body[0].x -= snake.speed;
       break;
     case "R":
@@ -138,6 +142,7 @@ function moveSnake() {
         snake.body[0].x >= 380 ? clearInterval(gameInterval) : ""; // END THE GAME IF TOUCH THE WALL
         // snake.body[0].x > 380 ? (snake.body[0].x = 0) : ""; // CAN TRAVERSE THE WALLS
       }
+      snake.body[0].x >= 380 ? alert(`END OF THE GAME! SCORE: ${currentScore}! Refresh the page to play again!`) : "" ;
       snake.body[0].x += snake.speed;
       break;
   }
@@ -175,12 +180,12 @@ function levelDifficulty(){
   btnEasy.onclick = function easyGame(){
     // gameLoop();
     console.log("GO FOR EASY MODE")
-    gameInterval = setInterval(gameLoop, 250);
+    gameInterval = setInterval(gameLoop, 180);
   }
   btnMedium.onclick = function startMedium(){
     // gameLoop();
     console.log("GO FOR MEDIUM MODE")
-    gameInterval = setInterval(gameLoop, 150);   
+    gameInterval = setInterval(gameLoop, 90);   
   } 
   btnHard.onclick = function startHard(){
     // gameLoop();
